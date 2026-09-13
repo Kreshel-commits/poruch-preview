@@ -1,10 +1,14 @@
-const CACHE = 'poruch-static-shell-local-preview';
+const CACHE = 'poruch-static-shell-99f23e385af6';
 const BASE = '/poruch-preview';
 const ROUTES = [
   '/', '/triage', '/situation', '/clarify', '/import-document', '/next-step',
   '/route-choice', '/handoff', '/questions', '/case', '/case-result', '/case-handoff',
   '/documents', '/public-request', '/military-report', '/privacy', '/how-it-works',
-  '/lawyers', '/_sitemap', '/+not-found',
+  '/lawyers', '/_sitemap', '/+not-found', '/path',
+  '/path/after-injury', '/path/military-report', '/path/functioning-assessment',
+  '/path/missing-service-member', '/path/captive-service-member',
+  '/path/returned-from-captivity', '/path/public-information-request',
+  '/path/family-after-service-member-death',
 ];
 const SHELL = ROUTES.map(path => `${BASE}${path === '/' ? '/' : `${path}/`}`);
 const STATIC_PREFIXES = [`${BASE}/_expo/static/`, `${BASE}/assets/`, `${BASE}/icons/`];
@@ -33,8 +37,6 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
-  // Query parameters may contain user input. They are never cached, even when
-  // a future route accidentally introduces them.
   if (url.search || url.origin !== self.location.origin || !url.pathname.startsWith(`${BASE}/`)) return;
   const routePath = url.pathname.slice(BASE.length).replace(/\/$/, '') || '/';
   const isRoute = ROUTES.includes(routePath);
