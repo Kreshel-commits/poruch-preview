@@ -1,14 +1,15 @@
-﻿const CACHE = 'poruch-static-shell-3ee548fb';
+const CACHE = 'poruch-static-shell-6269bdb8be38';
 const BASE = '/poruch-preview';
 const ROUTES = [
-  '/', '/triage', '/situation', '/clarify', '/import-document', '/next-step',
+  '/', '/situation', '/clarify', '/import-document', '/next-step',
   '/route-choice', '/handoff', '/questions', '/case', '/case-result', '/case-handoff',
-  '/documents', '/public-request', '/military-report', '/privacy', '/how-it-works',
+  '/documents', '/document-detail', '/document-sample', '/document-compose', '/offline-model',
+  '/public-request', '/military-report', '/privacy', '/how-it-works',
   '/lawyers', '/_sitemap', '/+not-found', '/path',
   '/path/after-injury', '/path/military-report', '/path/functioning-assessment',
   '/path/missing-service-member', '/path/captive-service-member',
   '/path/returned-from-captivity', '/path/public-information-request',
-  '/path/family-after-service-member-death',
+  '/path/family-after-service-member-death', '/path/free-legal-aid',
 ];
 const SHELL = ROUTES.map(path => `${BASE}${path === '/' ? '/' : `${path}/`}`);
 const STATIC_PREFIXES = [`${BASE}/_expo/static/`, `${BASE}/assets/`, `${BASE}/icons/`];
@@ -37,17 +38,19 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
-  if (url.search || url.origin !== self.location.origin || !url.pathname.startsWith(`${BASE}/`)) return;
+  if (url.origin !== self.location.origin || !url.pathname.startsWith(`${BASE}/`)) return;
   const routePath = url.pathname.slice(BASE.length).replace(/\/$/, '') || '/';
   const isRoute = ROUTES.includes(routePath);
   const isStatic = STATIC_PREFIXES.some(prefix => url.pathname.startsWith(prefix)) || url.pathname === `${BASE}/manifest.webmanifest`;
   if (!isRoute && !isStatic) return;
 
+  const routeRequest = new Request(`${url.origin}${url.pathname}`, { method: 'GET', credentials: 'same-origin' });
+
   if (isRoute) {
     event.respondWith(fetch(request).then(response => {
-      if (mayStore(request, response)) void caches.open(CACHE).then(cache => cache.put(request, response.clone()));
+      if (mayStore(request, response)) void caches.open(CACHE).then(cache => cache.put(routeRequest, response.clone()));
       return response;
-    }).catch(() => caches.match(request).then(cached => cached
+    }).catch(() => caches.match(routeRequest).then(cached => cached
       || caches.match(`${BASE}${routePath === '/' ? '/' : `${routePath}/`}`)
       || caches.match(`${BASE}/`))));
     return;
