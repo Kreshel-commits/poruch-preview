@@ -1,4 +1,4 @@
-const CACHE = 'poruch-static-shell-6269bdb8be38';
+const CACHE = 'poruch-static-shell-69bb5d665ef0';
 const BASE = '/poruch-preview';
 const ROUTES = [
   '/', '/situation', '/clarify', '/import-document', '/next-step',
@@ -12,7 +12,7 @@ const ROUTES = [
   '/path/family-after-service-member-death', '/path/free-legal-aid',
 ];
 const SHELL = ROUTES.map(path => `${BASE}${path === '/' ? '/' : `${path}/`}`);
-const STATIC_PREFIXES = [`${BASE}/_expo/static/`, `${BASE}/assets/`, `${BASE}/icons/`];
+const STATIC_PREFIXES = [`${BASE}/_expo/static/`, `${BASE}/assets/`, `${BASE}/icons/`, `${BASE}/wllama/`];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll([
