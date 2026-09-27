@@ -1,9 +1,9 @@
-const CACHE = 'poruch-static-shell-e718a3b5c934';
+const CACHE = 'poruch-static-shell-f8f7c2c5db90';
 const BASE = '/poruch-preview';
 const ROUTES = [
   '/', '/situation', '/clarify', '/import-document', '/next-step',
   '/route-choice', '/handoff', '/questions', '/case', '/case-result', '/case-handoff',
-  '/documents', '/document-detail', '/document-sample', '/document-compose', '/offline-model',
+  '/documents', '/document-acquisition', '/document-acquisition-detail', '/document-detail', '/document-sample', '/document-compose', '/offline-model',
   '/public-request', '/military-report', '/privacy', '/how-it-works',
   '/lawyers', '/_sitemap', '/+not-found', '/path',
   '/path/after-injury', '/path/military-report', '/path/functioning-assessment',
