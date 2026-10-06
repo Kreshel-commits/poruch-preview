@@ -1,4 +1,4 @@
-const CACHE = 'poruch-static-shell-focused-routes-20261001';
+const CACHE = 'poruch-static-shell-318a2d220bb1';
 const BASE = '/poruch-preview';
 const ROUTES = [
   '/', '/situation', '/clarify', '/import-document', '/next-step',
@@ -60,3 +60,4 @@ self.addEventListener('fetch', event => {
     return response;
   })));
 });
+
