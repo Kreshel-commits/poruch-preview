@@ -1,0 +1,64 @@
+name: Publish verified Poruch remote VLK site (one-time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-poruch-vlk-once.yml'
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ARTIFACT_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-aa30-81f4-a904-e738946b7474/raw?se=2026-10-13T18%3A06%3A07Z&sp=r&sv=2026-02-06&sr=b&scid=3e38728b-ab0b-50e4-a170-728c72144d16&skoid=e32cbaad-a1eb-4299-9f16-1b364ab43781&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-13T05%3A54%3A03Z&ske=2026-10-14T05%3A54%3A03Z&sks=b&skv=2026-02-06&sig=%2BLIu/HRzH%2BW4DVZkSY3ZkaMHuiZSKWu5yEo79LZOy0g%3D"
+      VERIFIED_SHA: "1ddb64ef7d72eb6b59b0f5dbf04cf02fd154a2f2"
+      ZIP_SHA256: "85f67a1bb3dddf18e31e9a12a47b4a594077ae853421fecc1b027998c2ac82f5"
+      EXPECTED_PARENT: "bcf72823a6efd2ee0e06e2e94281b3440574acb9"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 2
+      - name: Verify expected baseline and download verified release
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "$EXPECTED_PARENT"
+          python3 - <<'PY'
+          import os,urllib.request,pathlib,hashlib,zipfile,json,shutil
+          p=pathlib.Path('/tmp/poruch-web-release.zip')
+          req=urllib.request.Request(os.environ["ARTIFACT_URL"],headers={"User-Agent":"Poruch-GitHub-Pages-Publisher"})
+          with urllib.request.urlopen(req, timeout=90) as r, p.open("wb") as f:
+              shutil.copyfileobj(r,f)
+          if hashlib.sha256(p.read_bytes()).hexdigest()!=os.environ["ZIP_SHA256"]:
+              raise RuntimeError("Artifact sha256 mismatch")
+          with zipfile.ZipFile(p) as z:
+              files=z.namelist()
+              if len(files)<100 or len(files)!=len(set(files)):
+                  raise RuntimeError("Unexpected archive file list")
+              info=json.loads(z.read("build-info.json"))
+              if info.get("sourceCommit")!=os.environ["VERIFIED_SHA"] or info.get("releaseBranch")!="release/web-preview":
+                  raise RuntimeError("Wrong source SHA in compiled site")
+              manifest=json.loads(z.read("manifest.webmanifest"))
+              if manifest.get("scope")!="/poruch-preview/":
+                  raise RuntimeError("Wrong Pages scope")
+              for item in z.infolist():
+                  path=pathlib.PurePosixPath(item.filename)
+                  if path.is_absolute() or ".." in path.parts or ".git" in path.parts or ".github" in path.parts:
+                      raise RuntimeError("Unsafe archive member")
+                  if item.is_dir(): continue
+                  dest=pathlib.Path.cwd().joinpath(*path.parts)
+                  dest.parent.mkdir(parents=True,exist_ok=True)
+                  with z.open(item) as src,dest.open("wb") as dst:
+                      shutil.copyfileobj(src,dst)
+          print("Verified archive, source SHA, path scope and extracted site")
+          PY
+      - name: Commit exact site and remove one-time workflow
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f '.github/workflows/publish-poruch-vlk-once.yml'
+          git add -A
+          git commit -m "Publish remote VLK abroad update from source 1ddb64ef7d72"
+          git push origin HEAD:main
