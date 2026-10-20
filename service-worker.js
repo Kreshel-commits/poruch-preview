@@ -1,4 +1,4 @@
-const CACHE = 'poruch-static-shell-9dbb58f933de';
+const CACHE = 'poruch-static-shell-b87ace07a1c7';
 const BASE = '/poruch-preview';
 const ROUTES = [
   '/', '/situation', '/clarify', '/import-document', '/next-step',
