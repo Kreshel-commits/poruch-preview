@@ -1,0 +1,138 @@
+{
+  "createdOn": "2026-10-21",
+  "sourceCommit": "bd4a50f2a29da3f7b58fb841c6dcec19276d069c",
+  "attributions": [
+    {
+      "pathId": "after-injury",
+      "page": 1,
+      "title": "Крок 1. Отримайте медичну допомогу",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "першочергові дії після поранення",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 2,
+      "title": "Крок 2. Повідомте про госпіталізацію та переведення",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "госпіталізація та зв’язок із військовою частиною",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 3,
+      "title": "Крок 3. Перевірте медичну фіксацію",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "первинні медичні документи та виписки",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 5,
+      "title": "Крок 5. Перевірте обставини поранення",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "довідка про обставини травми",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 6,
+      "title": "Крок 6. Зберіть основні документи",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "медичні та службові документи після поранення",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 7,
+      "title": "Крок 7. Запросіть відсутні довідки",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "отримання відсутніх медичних і службових документів",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 9,
+      "title": "Крок 9. Перевірте отриману постанову ВЛК",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "рішення ВЛК та подальші дії",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 11,
+      "title": "Крок 11. Підготуйте потрібний рапорт",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "рапорти після лікування",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 16,
+      "title": "Крок 16. Завершіть поточний напрям",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "упорядкування документів і подальші дії",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "after-injury",
+      "page": 19,
+      "title": "Додатково. Виплати за час лікування — паралельно",
+      "provider": "МОУ «Турбота»",
+      "document": "Довідник військовослужбовця після поранення",
+      "topic": "грошове забезпечення під час лікування",
+      "url": "https://turbota.mil.gov.ua/dovidnyk-poranenogo",
+      "accessedOn": "2026-10-21",
+      "use": "adapted-practical-guidance",
+      "structureBy": "Поруч"
+    },
+    {
+      "pathId": "military-report",
+      "page": 7,
+      "title": "Документ. Рапорт на вільну тему про службове порушення або іншу службову проблему",
+      "provider": "МОУ «Турбота»",
+      "document": "МОУ «Турбота»: Рапорт на вільну тему",
+      "topic": "зразки рапортів",
+      "url": "https://turbota.mil.gov.ua/raporty/raport-na-vilnu-temu",
+      "accessedOn": "2026-10-21",
+      "use": "source-reference",
+      "structureBy": "Поруч"
+    }
+  ]
+}
